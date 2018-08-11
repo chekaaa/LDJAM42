@@ -10,7 +10,8 @@ public class PhysicsObject : MonoBehaviour
     [SerializeField] protected float torqueForce = 2f;
     protected float torqueDirection;
     protected float accelerationDirection;
-    protected float stopThreshold = .7f;
+    protected float stopThreshold = .2f;
+    protected bool isSelected;
 
     protected Rigidbody2D rb;
 
@@ -21,6 +22,8 @@ public class PhysicsObject : MonoBehaviour
 
     void Update()
     {
+        if (!isSelected)
+            return;
         //Request player inputs
         ProcessInputs();
     }
@@ -46,14 +49,14 @@ public class PhysicsObject : MonoBehaviour
         {
             rb.angularVelocity = (torqueForce * -torqueDirection);
         }
-        //invert the turn if backing
         else if (localVelocity.y < -stopThreshold)
         {
+            //invert the turn if backing
             rb.angularVelocity = (torqueForce * torqueDirection);
         }
         else
         {
-            rb.angularVelocity = Mathf.Lerp(rb.angularVelocity, 0f, 2f * Time.deltaTime);
+            rb.angularVelocity = Mathf.Lerp(rb.angularVelocity, 0f, 3f * Time.deltaTime);
         }
 
 

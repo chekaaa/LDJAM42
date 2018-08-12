@@ -49,7 +49,7 @@ public class VehicleBehaviour : MonoBehaviour
 
     void CheckIfParked()
     {
-        Collider2D trigger = Physics2D.OverlapCircle(transform.position, .5f, triggerMask);
+        Collider2D trigger = Physics2D.OverlapCircle(transform.position, .3f, triggerMask);
 
         //Cast a overlap circle from the center of the ship , if it detects the outside trigger collision
         //that means its not parked, if it doesnt detect the outside trigger then check if the ships is moving
@@ -69,11 +69,11 @@ public class VehicleBehaviour : MonoBehaviour
 
     }
 
-    void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(transform.position, .5f);
-    }
+    // void OnDrawGizmosSelected()
+    // {
+    //     Gizmos.color = Color.red;
+    //     Gizmos.DrawSphere(transform.position, .5f);
+    // }
 
     void OnCollisionEnter2D(Collision2D collider)
     {

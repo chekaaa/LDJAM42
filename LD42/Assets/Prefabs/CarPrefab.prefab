@@ -22,9 +22,9 @@ GameObject:
   - component: {fileID: 212776461144698300}
   - component: {fileID: 50860805482861612}
   - component: {fileID: 114043204169246798}
-  - component: {fileID: 61375067828204046}
   - component: {fileID: 114074591359449386}
   - component: {fileID: 82235298776822790}
+  - component: {fileID: 60624733023671414}
   m_Layer: 0
   m_Name: CarPrefab
   m_TagString: ship
@@ -91,8 +91,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1152732276442574}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.72, y: -3.5928364, z: 0}
-  m_LocalScale: {x: 3.478, y: 6.89, z: 1}
+  m_LocalPosition: {x: -11.53, y: 0.11, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224299013518117768}
   m_Father: {fileID: 0}
@@ -118,8 +118,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &61375067828204046
-BoxCollider2D:
+--- !u!60 &60624733023671414
+PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -130,19 +130,26 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.00000029429793, y: -0.00092010945}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
+    border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 3, y: 3}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.1344803, y: 0.13618071}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: 1.0138988, y: 1.3020983}
+      - {x: -0.86284924, y: 1.289948}
+      - {x: -1.3645983, y: 0.7881994}
+      - {x: -1.3402977, y: -0.98784983}
+      - {x: -1.125, y: -1.227448}
+      - {x: 0.4375, y: -1.2031474}
+      - {x: 1.3906479, y: -0.22569942}
+      - {x: 1.3906479, y: 0.9270983}
 --- !u!82 &82235298776822790
 AudioSource:
   m_ObjectHideFlags: 1
@@ -266,9 +273,9 @@ MonoBehaviour:
   triggerMask:
     serializedVersion: 2
     m_Bits: 256
-  shipMaxHp: 100
+  shipMaxHp: 30
   shipHp: 0
-  crashDamage: 20
+  crashDamage: 10
   hpBarCanvas: {fileID: 1644339936659998}
   hpBarImage: {fileID: 114500926296456264}
   crashClip: {fileID: 8300000, guid: 10d9bbfd5c726ec47ba5a765d2094119, type: 3}
@@ -401,7 +408,7 @@ SpriteRenderer:
   m_SortingLayerID: 837203033
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 9d6b47e77e736904b893f86a8b0bf1cf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

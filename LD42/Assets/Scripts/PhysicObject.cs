@@ -11,7 +11,7 @@ public class PhysicsObject : MonoBehaviour
     protected float torqueDirection;
     protected float accelerationDirection;
     protected float stopThreshold = .2f;
-    protected bool isSelected;
+    public bool isSelected;
 
     protected Rigidbody2D rb;
 
@@ -56,7 +56,8 @@ public class PhysicsObject : MonoBehaviour
         }
         else
         {
-            rb.angularVelocity = Mathf.Lerp(rb.angularVelocity, 0f, 3f * Time.deltaTime);
+            rb.angularVelocity = (torqueForce * -torqueDirection);
+            // rb.angularVelocity = Mathf.Lerp(rb.angularVelocity, 0f, 3f * Time.deltaTime);
         }
 
 

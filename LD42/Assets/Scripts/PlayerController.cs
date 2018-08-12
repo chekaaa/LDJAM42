@@ -21,6 +21,8 @@ public class PlayerController : PhysicsObject
 
     void OnMouseDown()
     {
+        //If the vehicle is clicked, Gamemanager check all the vehicles , if the vehicle checked is not the one
+        //clicked it disables the controls
         Debug.Log("@OnMouseDown - " + transform.name);
         GameManager.instance.SwitchVehicleControl(transform.name);
     }

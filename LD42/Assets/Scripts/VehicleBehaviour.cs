@@ -8,6 +8,7 @@ public class VehicleBehaviour : MonoBehaviour
     //Layer Names
     private const string OUTSIDE_TAG = "outside";
     private const string WALL_TAG = "wall";
+    private const string SHIP_TAG = "ship";
 
     //Components of this gameobject
     private RaycastHit2D[] hits;
@@ -76,7 +77,7 @@ public class VehicleBehaviour : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collider)
     {
-        if (collider.transform.tag == WALL_TAG)
+        if (collider.transform.tag == WALL_TAG || collider.transform.tag == SHIP_TAG)
         {
             //Reduce ship HP
             TakeDamage();

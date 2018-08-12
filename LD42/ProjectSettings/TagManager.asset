@@ -6,6 +6,7 @@ TagManager:
   tags:
   - outside
   - wall
+  - ship
   layers:
   - Default
   - TransparentFX
@@ -51,6 +52,9 @@ TagManager:
     locked: 0
   - name: Cars
     uniqueID: 837203033
+    locked: 0
+  - name: Particles
+    uniqueID: 1796974995
     locked: 0
   - name: GUI
     uniqueID: 4075646381

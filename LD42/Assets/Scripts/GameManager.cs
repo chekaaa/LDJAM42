@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public event VehicleSelected OnVehicleSelected;
 
     public List<Transform> vehicleList = new List<Transform>();
-    public TMP_Text timerGUI;
+    public TMP_Text timerGUI, parkedGUI;
 
 
     private float timer = 0f;
@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         UpdateTime();
+        UpdateParkedUI();
         if (areAllParked())
         {
             //WOn game
@@ -58,6 +59,23 @@ public class GameManager : MonoBehaviour
 
         //Show GameOver Panel
         Debug.Log("GameOver");
+    }
+
+    //Display in the screen the amount of ships parked
+    void UpdateParkedUI()
+    {
+        int parked = 0;
+        int maxParked = vehicleList.Count;
+
+        foreach (Transform t in vehicleList)
+        {
+            if (t.GetComponent<VehicleBehaviour>().isParked)
+            {
+                parked++;
+            }
+        }
+
+        parkedGUI.text = "Ships parked: \n " + parked + "/" + maxParked;
     }
 
     //Return if the the time passed the time limit

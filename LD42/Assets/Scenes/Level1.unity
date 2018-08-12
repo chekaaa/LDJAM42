@@ -152,10 +152,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1639129149002094, guid: 52f1b31481a719b47a16e085661295ad, type: 2}
-      propertyPath: m_TagString
-      value: ship
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52f1b31481a719b47a16e085661295ad, type: 2}
   m_IsPrefabAsset: 0
@@ -408,10 +404,6 @@ Prefab:
     - target: {fileID: 4375993528991056, guid: b8a8fbb0a8c3f2f4999ec67c2afc570d, type: 2}
       propertyPath: m_RootOrder
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1438276320015206, guid: b8a8fbb0a8c3f2f4999ec67c2afc570d, type: 2}
-      propertyPath: m_TagString
-      value: ship
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8a8fbb0a8c3f2f4999ec67c2afc570d, type: 2}
@@ -6595,10 +6587,6 @@ Prefab:
     - target: {fileID: 4632520862200546, guid: 6a223be7009ecb242b1684767f283965, type: 2}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1152732276442574, guid: 6a223be7009ecb242b1684767f283965, type: 2}
-      propertyPath: m_TagString
-      value: ship
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a223be7009ecb242b1684767f283965, type: 2}

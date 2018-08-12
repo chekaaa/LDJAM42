@@ -46,24 +46,24 @@ public class PhysicsObject : MonoBehaviour
         //If the car velocity is not between the threshold it will start turning
         //but if it is the car will smoothly stop turning
         Vector3 localVelocity = transform.InverseTransformDirection(rb.velocity);
-        if (localVelocity.y > stopThreshold)
-        {
-            rb.angularVelocity = (torqueForce * -torqueDirection);
-        }
-        else if (localVelocity.y < -stopThreshold)
-        {
-            //invert the turn if backing
-            rb.angularVelocity = (torqueForce * torqueDirection);
-        }
-        else
-        {
-            rb.angularVelocity = (torqueForce * -torqueDirection);
-            // rb.angularVelocity = Mathf.Lerp(rb.angularVelocity, 0f, 3f * Time.deltaTime);
-        }
-
-
-
+        // if (localVelocity.y > stopThreshold)
+        // {
+        //     rb.angularVelocity = (torqueForce * -torqueDirection);
+        // }
+        // else if (localVelocity.y < -stopThreshold)
+        // {
+        //     //invert the turn if backing
+        rb.angularVelocity = (torqueForce * -torqueDirection);
     }
+    // else
+    // {
+    //     rb.angularVelocity = (torqueForce * -torqueDirection);
+    //     // rb.angularVelocity = Mathf.Lerp(rb.angularVelocity, 0f, 3f * Time.deltaTime);
+    // }
+
+
+
+
 
     Vector2 ForwardVelocity()
     {

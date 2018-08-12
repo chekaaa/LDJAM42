@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,10 +14,12 @@ public class GameManager : MonoBehaviour
     public event VehicleSelected OnVehicleSelected;
 
     public List<Transform> vehicleList = new List<Transform>();
-    public TMP_Text timerGUI, parkedGUI;
+    public TMP_Text timerGUI, parkedGUI, bestTimeGUI, yourTimeGUI;
+    public GameObject gameOverPanel, winPanel;
 
 
     private float timer = 0f;
+    private bool isGameOver;
 
     void Awake()
     {
@@ -37,28 +40,73 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        UpdateTime();
-        UpdateParkedUI();
-        if (areAllParked())
+        if (!isGameOver)
         {
-            //WOn game
-            Debug.Log("All parked");
+            UpdateTime();
+            UpdateParkedUI();
+            if (areAllParked())
+            {
+                //WOn game
+                Win();
+                Debug.Log("All parked");
+            }
         }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                SceneManager.LoadScene(0);
+            }
+        }
+
+
+    }
+
+    public void Win()
+    {
+        isGameOver = true;
+
+        DeselectallShips();
+
+        gameOverPanel.SetActive(false);
+        winPanel.SetActive(true);
+
+        float bestTime = PlayerPrefs.GetFloat("bestTime", -1);
+        if (bestTime == -1)
+        {
+            PlayerPrefs.SetFloat("bestTime", timer);
+        }
+        else if (bestTime > timer)
+        {
+            PlayerPrefs.SetFloat("bestTime", timer);
+        }
+        bestTime = PlayerPrefs.GetFloat("bestTime", -1);
+        string formatedBestTime = FormatTime(bestTime);
+        string formatedTimer = FormatTime(timer);
+        bestTimeGUI.text = formatedBestTime;
+        yourTimeGUI.text = formatedTimer;
 
     }
 
     public void GameOver()
     {
-        this.enabled = false;
-
+        // this.enabled = false;
+        isGameOver = true;
         //Disable all vehicles
+        DeselectallShips();
+
+        //Show GameOver Panel
+        winPanel.SetActive(false);
+        gameOverPanel.SetActive(true);
+        Debug.Log("GameOver");
+    }
+
+    void DeselectallShips()
+    {
         foreach (Transform t in vehicleList)
         {
             t.transform.GetComponent<PlayerController>().isSelected = false;
         }
-
-        //Show GameOver Panel
-        Debug.Log("GameOver");
     }
 
     //Display in the screen the amount of ships parked
@@ -82,8 +130,15 @@ public class GameManager : MonoBehaviour
     void UpdateTime()
     {
         timer += Time.deltaTime;
-        float minutes = Mathf.Floor(timer / 60);
-        float seconds = Mathf.RoundToInt(timer % 60);
+
+        timerGUI.text = FormatTime(timer);
+
+    }
+
+    string FormatTime(float t)
+    {
+        float minutes = Mathf.Floor(t / 60);
+        float seconds = Mathf.RoundToInt(t % 60);
         string sMinutes = minutes.ToString();
         string sSeconds = seconds.ToString();
 
@@ -95,9 +150,7 @@ public class GameManager : MonoBehaviour
         {
             sSeconds = "0" + Mathf.RoundToInt(seconds).ToString();
         }
-
-        timerGUI.text = sMinutes + ":" + sSeconds;
-
+        return sMinutes + ":" + sSeconds;
     }
 
     //Return if all vehicles are inside the hangar

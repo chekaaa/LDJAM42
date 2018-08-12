@@ -40,7 +40,7 @@ public class PlayerController : PhysicsObject
     protected override void ProcessInputs()
     {
         accelerationDirection = Input.GetAxis("Vertical");
-
+        sideDirection = Input.GetAxis("Side");
         torqueDirection = Input.GetAxis("Horizontal");
     }
 }

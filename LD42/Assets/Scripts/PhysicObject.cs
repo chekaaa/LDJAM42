@@ -9,7 +9,7 @@ public class PhysicsObject : MonoBehaviour
     [SerializeField] private float accelerationForce = 5f;
     [SerializeField] protected float torqueForce = 2f;
     protected float torqueDirection;
-    protected float accelerationDirection;
+    protected float accelerationDirection, sideDirection;
     protected float stopThreshold = .2f;
     public bool isSelected;
 
@@ -39,9 +39,10 @@ public class PhysicsObject : MonoBehaviour
 
     void Movement()
     {
-        rb.velocity = ForwardVelocity();
+        //rb.velocity = ForwardVelocity();
         //Impulse the car forward
         rb.AddForce(accelerationDirection * accelerationForce * transform.up);
+        rb.AddForce(sideDirection * accelerationForce * transform.right);
         //If the car velocity is not between the threshold it will start turning
         //but if it is the car will smoothly stop turning
         Vector3 localVelocity = transform.InverseTransformDirection(rb.velocity);

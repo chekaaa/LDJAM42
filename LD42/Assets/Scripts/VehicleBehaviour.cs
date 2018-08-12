@@ -24,6 +24,7 @@ public class VehicleBehaviour : MonoBehaviour
     private float hpBarDisplayTime = 1f;
 
     //FX
+    private SpriteRenderer shipSprite;
     private AudioSource audioSource;
     [SerializeField] private AudioClip crashClip;
     [SerializeField] private GameObject explosionParticle;
@@ -32,6 +33,7 @@ public class VehicleBehaviour : MonoBehaviour
 
     void Awake()
     {
+        shipSprite = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         shipHp = shipMaxHp;
         audioSource = GetComponent<AudioSource>();
@@ -40,6 +42,13 @@ public class VehicleBehaviour : MonoBehaviour
     void Start()
     {
         GameManager.instance.vehicleList.Add(this.transform);
+        GameManager.instance.OnVehicleSelected += OnShipClicked;
+    }
+
+    void OnDestroy()
+    {
+        GameManager.instance.OnVehicleSelected -= OnShipClicked;
+        GameManager.instance.vehicleList.Remove(this.transform);
     }
 
     void FixedUpdate()
@@ -67,6 +76,22 @@ public class VehicleBehaviour : MonoBehaviour
             }
         }
 
+    }
+
+    public void OnShipClicked(string shipName)
+    {
+        //if this ship is selected then turn it green
+        if (shipName == transform.name)
+        {
+            Color testColor;
+            ColorUtility.TryParseHtmlString("#78FF90", out testColor);
+            shipSprite.color = testColor;
+        }
+        else
+        {
+            //if not then set the normal color
+            shipSprite.color = Color.white;
+        }
     }
 
     // void OnDrawGizmosSelected()

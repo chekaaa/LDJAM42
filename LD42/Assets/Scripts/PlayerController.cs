@@ -33,6 +33,7 @@ public class PlayerController : PhysicsObject
         //If this is the vehicle that caleed the event, it will become the active vehicle
         //if not this vehicle will become inactive
         isSelected = (transform.name == vehicleName);
+
     }
 
 

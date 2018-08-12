@@ -15,8 +15,8 @@ public class GameManager : MonoBehaviour
     public List<Transform> vehicleList = new List<Transform>();
     public TMP_Text timerGUI;
 
-    [SerializeField] private float timeLimit = 30;
-    private float timePassed = 0f;
+
+    private float timer = 0f;
 
     void Awake()
     {
@@ -32,25 +32,18 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        timePassed = timeLimit;
+        timer = 0;
     }
 
     void Update()
     {
-        if (!isTimeUp())
+        UpdateTime();
+        if (areAllParked())
         {
-            if (areAllParked())
-            {
-                //WOn game
-                Debug.Log("All parked");
-            }
+            //WOn game
+            Debug.Log("All parked");
         }
-        else
-        {
-            //Game Over
-            GameOver();
-            Debug.Log("Game Over");
-        }
+
     }
 
     public void GameOver()
@@ -68,15 +61,25 @@ public class GameManager : MonoBehaviour
     }
 
     //Return if the the time passed the time limit
-    bool isTimeUp()
+    void UpdateTime()
     {
-        timePassed -= Time.deltaTime;
-        timerGUI.text = (int)timePassed + "";
-        if (timePassed <= 0)
+        timer += Time.deltaTime;
+        float minutes = Mathf.Floor(timer / 60);
+        float seconds = Mathf.RoundToInt(timer % 60);
+        string sMinutes = minutes.ToString();
+        string sSeconds = seconds.ToString();
+
+        if (minutes < 10)
         {
-            return true;
+            sMinutes = "0" + minutes.ToString();
         }
-        return false;
+        if (seconds < 10)
+        {
+            sSeconds = "0" + Mathf.RoundToInt(seconds).ToString();
+        }
+
+        timerGUI.text = sMinutes + ":" + sSeconds;
+
     }
 
     //Return if all vehicles are inside the hangar

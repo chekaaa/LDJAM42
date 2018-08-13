@@ -23,7 +23,12 @@ public class PhysicsObject : MonoBehaviour
     void Update()
     {
         if (!isSelected)
+        {
+            accelerationDirection = 0f;
+            sideDirection = 0f;
+            torqueDirection = 0f;
             return;
+        }
         //Request player inputs
         ProcessInputs();
     }
@@ -32,9 +37,7 @@ public class PhysicsObject : MonoBehaviour
 
     void FixedUpdate()
     {
-        //Add the forces and torque to the RigidBody2D
-        if (!isSelected)
-            return;
+        //Add the forces and torque to the RigidBody2D       
         Movement();
     }
 

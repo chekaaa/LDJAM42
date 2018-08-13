@@ -6,6 +6,7 @@ public class PlayerController : PhysicsObject
 {
 
 
+
     void Start()
     {
         Debug.Log("Subscribing to the event");
@@ -19,13 +20,14 @@ public class PlayerController : PhysicsObject
         GameManager.instance.OnVehicleSelected -= OnVehicleClicked;
     }
 
-    void OnMouseDown()
-    {
-        //If the vehicle is clicked, Gamemanager check all the vehicles , if the vehicle checked is not the one
-        //clicked it disables the controls
-        Debug.Log("@OnMouseDown - " + transform.name);
-        GameManager.instance.SwitchVehicleControl(transform.name);
-    }
+
+    // void OnMouseDown()
+    // {
+    //     //If the vehicle is clicked, Gamemanager check all the vehicles , if the vehicle checked is not the one
+    //     //clicked it disables the controls
+    //     Debug.Log("@OnMouseDown - " + transform.name);
+    //     GameManager.instance.SwitchVehicleControl(transform.name);
+    // }
 
     public void OnVehicleClicked(string vehicleName)
     {
@@ -42,5 +44,6 @@ public class PlayerController : PhysicsObject
         accelerationDirection = Input.GetAxis("Vertical");
         sideDirection = Input.GetAxis("Side");
         torqueDirection = Input.GetAxis("Horizontal");
+
     }
 }

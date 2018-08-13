@@ -33,6 +33,8 @@ public class PhysicsObject : MonoBehaviour
     void FixedUpdate()
     {
         //Add the forces and torque to the RigidBody2D
+        if (!isSelected)
+            return;
         Movement();
     }
 

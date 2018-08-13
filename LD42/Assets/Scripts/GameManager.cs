@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     public TMP_Text timerGUI, parkedGUI, bestTimeGUI, yourTimeGUI;
     public GameObject gameOverPanel, winPanel;
 
-
+    [SerializeField] private LayerMask shipLayermask;
     private float timer = 0f;
     private bool isGameOver;
 
@@ -49,7 +49,19 @@ public class GameManager : MonoBehaviour
                 //WOn game
                 Win();
                 Debug.Log("All parked");
+                return;
             }
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition),
+                 new Vector3(0, 0, 1), 500f, shipLayermask);
+                if (hit.collider != null)
+                {
+                    SwitchVehicleControl(hit.transform.name);
+                }
+            }
+
         }
         else
         {
